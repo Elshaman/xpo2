@@ -1,0 +1,26 @@
+{%  extends 'bootstrap/base.html'  %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block body %}
+     <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>nombre</th>
+                <th>precio</th>
+                <th>actualizar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in productos %}
+                <tr>
+                    <td>{{ p.nombre }}</td>
+                    <td>{{ p.precio }}</td>
+                    <td><a href="/products/edit/{{p.id}}"> Editar</a> </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+     </table>
+{% endblock %}
