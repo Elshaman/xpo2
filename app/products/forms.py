@@ -1,7 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField,  SubmitField
+from wtforms import StringField,   SubmitField
 
-class RegisterProductForm(FlaskForm):
+class ProductFormMixin():
     nombre = StringField('nombre del producto' )
     precio = StringField('precio del producto' )
-    submit = SubmitField('Registrar producto')
+
+class NewProductForm(FlaskForm , ProductFormMixin):
+    submit = SubmitField('Add')
+
+class EditProductForm(FlaskForm, ProductFormMixin):
+    submit = SubmitField('Edit')
+

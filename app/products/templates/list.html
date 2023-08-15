@@ -5,6 +5,16 @@
 {% endblock %}
 
 {% block body %}
+     {% for message  in get_flashed_messages() %}
+         <div class="alert alert-success alert-dismissable">
+            <button type="button"
+                    data-dismiss="alert"
+                    class="close">
+                    &times;
+            </button>
+            {{ message }}
+         </div>
+     {% endfor %}
      <table id="data" class="table table-striped">
         <thead>
             <tr>
@@ -23,4 +33,7 @@
             {% endfor %}
         </tbody>
      </table>
+     {% block scripts %}
+            {{ super() }}
+        {% endblock %}
 {% endblock %}
