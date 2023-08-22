@@ -1,7 +1,9 @@
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect,request
 from . import products
+from werkzeug.utils import secure_filename
 from .forms import NewProductForm, EditProductForm
 import app
+import os
 
 @products.route('/')
 def index():
@@ -17,6 +19,11 @@ def create():
         ##p = app.models.Producto(nombre = form_registro.nombre.data , precio= form_registro.precio.data)
         app.db.session.add(p)
         app.db.session.commit()
+
+        file = request.files['imagen']
+        filename = secure_filename(file.filename)
+        file.save(os.path.abspath('C:/dockerdata_pruebas/' + filename))
+
         flash( "registro exitoso")
         return redirect('/products')
     return render_template('new.html', form=form_registro)

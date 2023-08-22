@@ -8,6 +8,9 @@ from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config.from_object(Config)
+UPLOAD_FOLDER = './images'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 app.register_blueprint(my_blueprint)
 app.register_blueprint(products)
 db = SQLAlchemy(app)
