@@ -1,4 +1,4 @@
-from flask import  Flask
+from flask import  Flask, render_template
 from .config import Config
 from .my_blueprint import my_blueprint
 from app.products import products
@@ -18,3 +18,7 @@ migrate = Migrate(app, db)
 bootstrap = Bootstrap(app)
 
 from .models import Producto
+
+@app.route("/holitas")
+def holitas():
+    return render_template("holitas.html")

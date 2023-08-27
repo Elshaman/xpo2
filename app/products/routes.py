@@ -38,4 +38,8 @@ def edit(product_id):
         return "actualizacion exitosa"
     return render_template("new.html" , form = form_edit)
 
+@products.route('/holitas')
+def holitas():
+    return render_template("new.html")
+
 
