@@ -1,10 +1,6 @@
-{%  extends 'bootstrap/base.html'  %}
+{%  extends 'base.html'  %}
 
-{% block head %}
-    {{ super() }}
-{% endblock %}
-
-{% block body %}
+{% block content %}
      {% for message  in get_flashed_messages() %}
          <div class="alert alert-success alert-dismissable">
             <button type="button"
@@ -15,11 +11,14 @@
             {{ message }}
          </div>
      {% endfor %}
+    <h1>Lista de productos</h1>
+    <a href="/products/create">Nuevo producto</a>
      <table id="data" class="table table-striped">
         <thead>
             <tr>
                 <th>nombre</th>
                 <th>precio</th>
+                <th>imagen</th>
                 <th>actualizar</th>
             </tr>
         </thead>
@@ -28,12 +27,11 @@
                 <tr>
                     <td>{{ p.nombre }}</td>
                     <td>{{ p.precio }}</td>
+                    <td><img width="200" height="200" src="images/{{ p.imagen }}"></td>
                     <td><a href="/products/edit/{{p.id}}"> Editar</a> </td>
                 </tr>
             {% endfor %}
         </tbody>
      </table>
-     {% block scripts %}
-            {{ super() }}
-        {% endblock %}
+
 {% endblock %}

@@ -16,15 +16,16 @@ def create():
     form_registro = NewProductForm()
     if form_registro.validate_on_submit():
         form_registro.populate_obj(p)
-        ##p = app.models.Producto(nombre = form_registro.nombre.data , precio= form_registro.precio.data)
+        p.imagen = form_registro.imagen.data.filename
         app.db.session.add(p)
         app.db.session.commit()
 
-        file = request.files['imagen']
+        ##return os.getcwd()
+        file = form_registro.imagen.data
         filename = secure_filename(file.filename)
-        file.save(os.path.abspath('C:/dockerdata_pruebas/' + filename))
+        file.save(os.path.abspath(os.getcwd() + '/app/products/images/' + filename))
 
-        flash( "registro exitoso")
+        flash("registro exitoso")
         return redirect('/products')
     return render_template('new.html', form=form_registro)
 
